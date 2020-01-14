@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+hr {
+  border-color: white;
 }
 
-a {
-  color: #00B7FF;
+#homepage-background {
+  background: url("../images/black-man-reading-a-newspaper-3473492.jpg") no-repeat center center;
+  background-size: 100%;
+  min-height: 75vh;
+}
+
+.jumbo-text {
+  /* color: white; */
+  font-weight: bold;
 }
