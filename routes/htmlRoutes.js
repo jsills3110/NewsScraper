@@ -1,5 +1,6 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
+// var db = require("../models");
 
 module.exports = function(app) {
     app.get("/", function(req, res) {
@@ -7,38 +8,27 @@ module.exports = function(app) {
         axios.get("https://www.thestranger.com/").then(function(response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
-            // console.log(cheers);
 
-            // Now, we grab every h2 within an article tag, and do the following:
+            var articles = [];
+
             $("h2.headline").each(function(i, element) {
-                // Save an empty result object
-                var result = {};
 
-                console.log(i);
-                console.log(element);
-                // // Add the text and href of every link, and save them as properties of the result object
-                // result.title = $(this)
-                //     .children("a")
-                //     .text();
-                // result.link = $(this)
-                //     .children("a")
-                //     .attr("href");
+                if (element.children[1].children[0].data !== undefined) {
 
-                // // Create a new Article using the `result` object built from scraping
-                // db.Article.create(result)
-                //     .then(function(dbArticle) {
-                //         // View the added result in the console
-                //         console.log(dbArticle);
-                //     })
-                //     .catch(function(err) {
-                //         // If an error occurred, log it
-                //         console.log(err);
-                //     });
+                    // Save an empty result object
+                    var result = {};
+
+                    // // Add the text and href of every link, and save them as properties of the result object
+                    result.title = element.children[1].children[0].data.trim();
+                    result.link = element.children[1].attribs.href;
+
+                    articles.push(result);
+                }
             });
 
             // Send a message to the client
             // res.send("Scrape Complete");
-            res.render("index", { title: "Seattle News Scraper"});
+            res.render("index", { title: "Seattle News Scraper", article: articles });
         });
     });
 
