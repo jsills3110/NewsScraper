@@ -4,6 +4,7 @@ var cheerio = require("cheerio");
 
 module.exports = function(app) {
     app.get("/", function(req, res) {
+        
         // First, we grab the body of the html with axios
         axios.get("https://www.thestranger.com/").then(function(response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -27,7 +28,6 @@ module.exports = function(app) {
             });
 
             // Send a message to the client
-            // res.send("Scrape Complete");
             res.render("index", { title: "Seattle News Scraper", article: articles });
         });
     });
