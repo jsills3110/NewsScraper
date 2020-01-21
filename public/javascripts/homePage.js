@@ -18,7 +18,7 @@ $("#save-article").on("click", function(event) {
     event.preventDefault();
     let article = {
         title: $(this).attr("data-title"),
-        link: $(this).attr("data-link");
+        link: $(this).attr("data-link")
     }
     // $.post()
 });
