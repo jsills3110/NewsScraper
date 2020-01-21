@@ -14,11 +14,22 @@ $("#clear-articles").on("click", function(event) {
     $("#articles").append(row);
 });
 
-$("#save-article").on("click", function(event) {
+$(document).on("click", ".save-article", function(event) {
     event.preventDefault();
     let article = {
         title: $(this).attr("data-title"),
         link: $(this).attr("data-link")
     }
-    // $.post()
+    $.ajax({
+        method: "POST",
+        url: "/api/article",
+        data: article
+    }).then(function(data) {
+        console.log(data);
+        if (data._id === "none") {
+            console.log("This article is already saved!");
+        } else {
+            console.log("Article saved!");
+        }
+    });
 });
