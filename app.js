@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
-// mongoose.connect(MONGODB_URI);
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraper";
+mongoose.connect(MONGODB_URI);
 
 // Routes
 require("./routes/apiRoutes")(app);

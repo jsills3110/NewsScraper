@@ -1,15 +1,14 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
-// var db = require("../models");
+var db = require("../models");
 
 module.exports = function(app) {
     app.get("/", function(req, res) {
-        
+
         // First, we grab the body of the html with axios
         axios.get("https://www.thestranger.com/").then(function(response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
-
             var articles = [];
 
             $("h2.headline").each(function(i, element) {
@@ -33,6 +32,12 @@ module.exports = function(app) {
     });
 
     app.get("/articles", function(req, res) {
-        res.render("articles", { title: "Saved Articles" });
+        db.Article.find({}).then(function(dbArticle) {
+            console.log(dbArticle);
+            res.render("articles", { article: dbArticle });
+        }).catch(function(err) {
+            console.log(err);
+            res.json(err);
+        });
     });
 };
