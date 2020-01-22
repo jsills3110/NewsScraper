@@ -14,7 +14,7 @@ $("#clear-articles").on("click", function(event) {
     $("#articles").append(row);
 });
 
-$(document).on("click", ".save-article", function(event) {
+$(document).on("click", ".save-modal", function(event) {
     event.preventDefault();
     let article = {
         title: $(this).attr("data-title"),
@@ -25,11 +25,14 @@ $(document).on("click", ".save-article", function(event) {
         url: "/api/article",
         data: article
     }).then(function(data) {
-        console.log(data);
+        $("#savedModalLabel").text("");
+        $("#modal-body").text("");
         if (data._id === "none") {
-            console.log("This article is already saved!");
+            $("#savedModalLabel").text(article.title);
+            $("#modal-body").text("This article has already been saved!");
         } else {
-            console.log("Article saved!");
+            $("#savedModalLabel").text(article.title);
+            $("#modal-body").text("Article saved!");
         }
     });
 });

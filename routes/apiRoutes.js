@@ -21,10 +21,39 @@ module.exports = function(app) {
 
     app.post("/api/note", function(req, res) {
         db.Note.create(req.body)
-            .then(function(dbNote) {
-                console.log(dbNote);
+            .then(function(newNote) {
+                res.json(newNote);
             }).catch(function(err) {
-                console.log(err);
+                res.json(err);
+            });
+    });
+
+    app.get("/api/note/:id", function(req, res) {
+        console.log(req.params.id);
+        db.Note.find({ _articleId: req.params.id }).then(function(dbNotes) {
+            res.json(dbNotes);
+        }).catch(function(err) {
+            res.json(err);
+        });;
+    });
+
+    app.delete("/api/article", function(req, res) {
+        console.log(req.body);
+        db.Article.deleteOne(req.body)
+            .then(function(dbDeleted) {
+                res.json(dbDeleted);
+            }).catch(function(err) {
+                res.json(err);
+            });
+    });
+
+    app.delete("/api/note", function(req, res) {
+        console.log(req.body);
+        db.Note.deleteOne(req.body)
+            .then(function(dbDeleted) {
+                res.json(dbDeleted);
+            }).catch(function(err) {
+                res.json(err);
             });
     });
 };

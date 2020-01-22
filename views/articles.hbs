@@ -15,11 +15,14 @@
                         <h5 class="card-title">{{this.title}}</h5>
                         <a href="{{this.link}}" class="btn btn-secondary" target="_blank">Go To Article</a>
                         <button type="button" class="btn btn-secondary note-modal" data-toggle="modal"
-                            data-target="#noteModal" data-title="{{this.title}}" data-link="{{this.link}}">
+                            data-target="#noteModal" data-id="{{this._id}}" data-title="{{this.title}}" 
+                            data-link="{{this.link}}">
                             View Notes
                         </button>
-                        <button type="button" class="btn btn-danger" id="delete-article" 
-                            data-title="{{this.title}}" data-link="{{this.link}}">Delete Article</button>
+                        <button type="button" class="btn btn-danger delete-article"
+                            data-id="{{this._id}}" data-title="{{this.title}}" data-link="{{this.link}}">
+                            Delete Article
+                        </button>
                     </div>
                 </div>
             </div>

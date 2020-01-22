@@ -33,10 +33,8 @@ module.exports = function(app) {
 
     app.get("/articles", function(req, res) {
         db.Article.find({}).then(function(dbArticle) {
-            console.log(dbArticle);
             res.render("articles", { article: dbArticle });
         }).catch(function(err) {
-            console.log(err);
             res.json(err);
         });
     });
