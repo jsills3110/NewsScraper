@@ -3,7 +3,6 @@ $(document).on("click", ".note-modal", function(event) {
     $("#modal-body").empty();
 
     const id = $(this).attr("data-id");
-    console.log(id);
     const title = $(this).attr("data-title");
     const link = $(this).attr("data-link");
 
@@ -44,7 +43,7 @@ $(document).on("click", ".note-modal", function(event) {
 $(document).on("click", ".delete-article", function(event) {
     event.preventDefault();
 
-    let article = {
+    const article = {
         _id: $(this).attr("data-id"),
         title: $(this).attr("data-title"),
         link: $(this).attr("data-link")
@@ -60,7 +59,7 @@ $(document).on("click", ".delete-article", function(event) {
 
 $("#save-note").on("click", function(event) {
     event.preventDefault();
-    let note = {
+    const note = {
         _articleId: $(this).attr("data-id"),
         body: $("#note-text").val().trim()
     };
@@ -77,7 +76,7 @@ $("#save-note").on("click", function(event) {
 $(document).on("click", ".delete-note", function(event) {
     event.preventDefault();
 
-    let note = {
+    const note = {
         _id: $(this).attr("data-id")
     };
 

@@ -7,6 +7,7 @@
         </div>
     </div>
     <div id="articles">
+        {{#if article}}
         {{#each article}}
         <div class="row justify-content-center">
             <div class="col-8">
@@ -28,6 +29,16 @@
             </div>
         </div>
         {{/each}}
+        {{else}}
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">You don't have any saved articles yet! Click below to find some.</h5>
+                    <a class="btn btn-secondary btn-lg mr-3" href="/" role="button">View New Articles</a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
     </div>
     <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel"
         aria-hidden="true">
